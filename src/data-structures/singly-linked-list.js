@@ -30,6 +30,30 @@ class MySingleLinkedList {
 
         return this;
     }
+    getIndex(index) {
+        let counter = 0;
+        let currentNode = this.head;
+
+        while(counter !== index) {
+            currentNode = currentNode.next;
+            counter++;
+        }
+        
+        return currentNode;
+    }
+    insert(value, index) {
+       if(index >= this.length) {
+            return this.append(value);
+       }
+       const newNode = new Node(value);
+       const firstPointer = this.getIndex(index-1);
+       const holdingPointer = firstPointer.next;
+       firstPointer.next = newNode;
+       newNode.next = holdingPointer;
+       this.length++; 
+
+       return this;
+    }
 }
 
 let mySingleLinkedList = new MySingleLinkedList(1);
